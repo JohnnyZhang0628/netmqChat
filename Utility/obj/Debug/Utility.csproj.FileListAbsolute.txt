@@ -1,0 +1,6 @@
+E:\WorkSpace\netmq\Utility\bin\Debug\Utility.dll
+E:\WorkSpace\netmq\Utility\bin\Debug\Utility.pdb
+E:\WorkSpace\netmq\Utility\obj\Debug\Utility.csprojAssemblyReference.cache
+E:\WorkSpace\netmq\Utility\obj\Debug\Utility.csproj.CoreCompileInputs.cache
+E:\WorkSpace\netmq\Utility\obj\Debug\Utility.dll
+E:\WorkSpace\netmq\Utility\obj\Debug\Utility.pdb

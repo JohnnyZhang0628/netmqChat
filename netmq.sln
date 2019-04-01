@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.329
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "netmq", "netmq\netmq.csproj", "{B31B3695-857D-4ED0-A19E-A9AF9EB4B33A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "netmqClient", "netmqClient\netmqClient.csproj", "{BCCE2E4E-7DEC-425E-9B53-97EF848A7E25}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utility", "Utility\Utility.csproj", "{BFD8216C-1102-43D6-B9C2-2FD914A17B48}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B31B3695-857D-4ED0-A19E-A9AF9EB4B33A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B31B3695-857D-4ED0-A19E-A9AF9EB4B33A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B31B3695-857D-4ED0-A19E-A9AF9EB4B33A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B31B3695-857D-4ED0-A19E-A9AF9EB4B33A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BCCE2E4E-7DEC-425E-9B53-97EF848A7E25}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BCCE2E4E-7DEC-425E-9B53-97EF848A7E25}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BCCE2E4E-7DEC-425E-9B53-97EF848A7E25}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BCCE2E4E-7DEC-425E-9B53-97EF848A7E25}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BFD8216C-1102-43D6-B9C2-2FD914A17B48}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BFD8216C-1102-43D6-B9C2-2FD914A17B48}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BFD8216C-1102-43D6-B9C2-2FD914A17B48}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BFD8216C-1102-43D6-B9C2-2FD914A17B48}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DF261D1C-023E-4127-B1F3-5415344202F0}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,13 @@
+E:\WorkSpace\netmq\netmqClient\bin\Debug\netmqClient.exe.config
+E:\WorkSpace\netmq\netmqClient\bin\Debug\netmqClient.exe
+E:\WorkSpace\netmq\netmqClient\bin\Debug\netmqClient.pdb
+E:\WorkSpace\netmq\netmqClient\bin\Debug\AsyncIO.dll
+E:\WorkSpace\netmq\netmqClient\bin\Debug\NetMQ.dll
+E:\WorkSpace\netmq\netmqClient\obj\Debug\netmqClient.csprojAssemblyReference.cache
+E:\WorkSpace\netmq\netmqClient\obj\Debug\netmqClient.FrmClient.resources
+E:\WorkSpace\netmq\netmqClient\obj\Debug\netmqClient.Properties.Resources.resources
+E:\WorkSpace\netmq\netmqClient\obj\Debug\netmqClient.csproj.GenerateResource.cache
+E:\WorkSpace\netmq\netmqClient\obj\Debug\netmqClient.csproj.CoreCompileInputs.cache
+E:\WorkSpace\netmq\netmqClient\obj\Debug\netmqClient.csproj.CopyComplete
+E:\WorkSpace\netmq\netmqClient\obj\Debug\netmqClient.exe
+E:\WorkSpace\netmq\netmqClient\obj\Debug\netmqClient.pdb

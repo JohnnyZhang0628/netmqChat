@@ -1,0 +1,12 @@
+E:\WorkSpace\netmq\netmq\bin\Debug\netmq.exe.config
+E:\WorkSpace\netmq\netmq\bin\Debug\netmq.exe
+E:\WorkSpace\netmq\netmq\bin\Debug\netmq.pdb
+E:\WorkSpace\netmq\netmq\bin\Debug\AsyncIO.dll
+E:\WorkSpace\netmq\netmq\bin\Debug\NetMQ.dll
+E:\WorkSpace\netmq\netmq\obj\Debug\netmq.FrmServer.resources
+E:\WorkSpace\netmq\netmq\obj\Debug\netmq.Properties.Resources.resources
+E:\WorkSpace\netmq\netmq\obj\Debug\netmq.csproj.GenerateResource.cache
+E:\WorkSpace\netmq\netmq\obj\Debug\netmq.csproj.CoreCompileInputs.cache
+E:\WorkSpace\netmq\netmq\obj\Debug\netmq.csproj.CopyComplete
+E:\WorkSpace\netmq\netmq\obj\Debug\netmq.exe
+E:\WorkSpace\netmq\netmq\obj\Debug\netmq.pdb
