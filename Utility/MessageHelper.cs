@@ -4,64 +4,57 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace Utility
 {
-   public class MessageHelper
+    public class MessageHelper
     {
         /// <summary>
-        /// 获取token
+        /// 生成消息包
         /// </summary>
-        /// <param name="paramters"></param>
+        /// <param name="data">数据格式</param>
         /// <returns></returns>
-        public static byte[] SendMessage(DataStructure data)
+        public static string SendMessage(DataStructure data)
         {
             string app_secret = "237183141@qq.com";
             string app_id = "netmq";
 
-            string paramters =$"{data.userStatus},{data.messageType},{data.dateTime.ToString("yyyy-MM-dd HH:mm:ss")},{data.message},{data.fileData}";
+            string paramters = JsonConvert.SerializeObject(data);
 
-            string token = paramters + "|" + GetMd5(app_id + app_secret + paramters);
+            string message = paramters + "|" + GetMd5(app_id + app_secret + paramters);
 
-           return Encoding.UTF8.GetBytes(token);
+            return Convert.ToBase64String(Encoding.UTF8.GetBytes(message));
 
         }
 
         /// <summary>
-        /// 校验秘钥
+        /// 校验消息包
         /// </summary>
-        /// <param name="tokenString"></param>
+        /// <param name="token">消息包</param>
         /// <returns></returns>
-        public static DataStructure GetMessage(byte[] buffer)
+        public static DataStructure GetMessage(string message)
         {
-            string token = Encoding.UTF8.GetString(buffer);
-            if (!string.IsNullOrEmpty(token) && token.IndexOf(",") > 0)
+           string token = Encoding.UTF8.GetString(Convert.FromBase64String(message));
+            if (!string.IsNullOrEmpty(token))
             {
-                string paramters = token.Split("|")[0];
-
-
-                var paramtersObj = JObject.Parse(paramters);
-                if (paramtersObj != null)
+                string[] msg = token.Split('|');
+                // 校验消息完整性
+                if (msg.Length == 2)
                 {
-
-                    //校验过期时间
-                    var minutes = (DateTime.Now - Convert.ToDateTime(paramtersObj["date_time"].ToString())).TotalMinutes;
-                    if (minutes > Convert.ToDouble(paramtersObj["expired"].ToString()))
-                        return false;
-                    else
+                    DataStructure data = JsonConvert.DeserializeObject<DataStructure>(msg[0]);
+                    // 校验时间
+                    if (data.DateTime < DateTime.Now)
                     {
-                        // 校验秘钥
-                        if (GetToken(paramters) == tokenString)
-                            return true;
-                        else
-                            return false;
+                        //校验数据包的是否被修改过
+                        if (message.Equals(SendMessage(data)))
+                            return data;
                     }
+
+
                 }
-                else
-                    return false;
             }
-            else
-                return false;
+            return null;
         }
 
         /// <summary>

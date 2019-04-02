@@ -4,3 +4,13 @@ E:\WorkSpace\netmq\Utility\obj\Debug\Utility.csprojAssemblyReference.cache
 E:\WorkSpace\netmq\Utility\obj\Debug\Utility.csproj.CoreCompileInputs.cache
 E:\WorkSpace\netmq\Utility\obj\Debug\Utility.dll
 E:\WorkSpace\netmq\Utility\obj\Debug\Utility.pdb
+D:\WorkSpace\netmqChat\Utility\bin\Debug\Utility.dll
+D:\WorkSpace\netmqChat\Utility\bin\Debug\Utility.pdb
+D:\WorkSpace\netmqChat\Utility\bin\Debug\Newtonsoft.Json.dll
+D:\WorkSpace\netmqChat\Utility\bin\Debug\Newtonsoft.Json.pdb
+D:\WorkSpace\netmqChat\Utility\bin\Debug\Newtonsoft.Json.xml
+D:\WorkSpace\netmqChat\Utility\obj\Debug\Utility.csproj.CoreCompileInputs.cache
+D:\WorkSpace\netmqChat\Utility\obj\Debug\Utility.csproj.CopyComplete
+D:\WorkSpace\netmqChat\Utility\obj\Debug\Utility.dll
+D:\WorkSpace\netmqChat\Utility\obj\Debug\Utility.pdb
+D:\WorkSpace\netmqChat\Utility\obj\Debug\Utility.csprojAssemblyReference.cache
