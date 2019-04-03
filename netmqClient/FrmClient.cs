@@ -20,30 +20,34 @@ namespace netmqClient
         //当前消息类型
         private MessageType messageType;
         //当前上传文件
-        private Utility.File uploadFile;
+        private UploadFile uploadFile = new UploadFile();
 
         private readonly string pubIP = ConfigurationManager.AppSettings["pubIP"];
         private readonly string pubPort = ConfigurationManager.AppSettings["pubPort"];
 
-        private readonly string subIP = ConfigurationManager.AppSettings["subIP"];
-        private readonly string subPort = ConfigurationManager.AppSettings["subPort"];
+        private readonly string serverIP = ConfigurationManager.AppSettings["serverIP"];
+        private readonly string serverPort = ConfigurationManager.AppSettings["serverPort"];
 
-        RequestSocket client = new RequestSocket();
+        private readonly string topic = "all";//ConfigurationManager.AppSettings["topic"];
+
+        delegate void SetTextCallback(string text);
+
         SubscriberSocket subSocket = new SubscriberSocket();
+        RequestSocket client = new RequestSocket();
+
 
         public FrmClient()
         {
             InitializeComponent();
 
-            client.Connect($"tcp://{subIP}:{subPort}");
+            client.Connect($"tcp://{serverIP}:{serverPort}");
             subSocket.Connect($"tcp://{pubIP}:{pubPort}");
             //1、订阅主题
-            subSocket.Subscribe("all");
+            subSocket.Subscribe(topic);
         }
 
         private void btnConnect_Click(object sender, EventArgs e)
         {
-
             if (string.IsNullOrEmpty(txtUserName.Text.Trim()))
             {
                 MessageBox.Show("请输入昵称", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -58,9 +62,15 @@ namespace netmqClient
                 UserName = txtUserName.Text.Trim()
             };
 
-            SendAndReceiveMsg(data);
+            Task task = new Task(() =>
+            {
+                SendAndReceiveMsg(data);
+            });
+            task.Start();
+
 
         }
+
 
         private void btnSend_Click(object sender, EventArgs e)
         {
@@ -88,8 +98,13 @@ namespace netmqClient
                 Message = msg,
                 UserName = txtUserName.Text.Trim()
             };
+            Task task = new Task(() =>
+            {
+                SendAndReceiveMsg(data);
+            });
+            task.Start();
 
-            SendAndReceiveMsg(data);
+
 
         }
 
@@ -100,29 +115,44 @@ namespace netmqClient
             //1.生成消息包
             string message = MessageHelper.SendMessage(data);
             //2、发送
-            // pubSocket.SendMoreFrame("all").SendFrame(dataBuffer);
-            client.SendMoreFrame("all").SendFrame(message);
+            client.SendFrame(message);
             #endregion
 
             #region 接受消息
-            //1、接收主题
-            string topic = subSocket.ReceiveFrameString();
-            //2、接收消息
-            data = MessageHelper.GetMessage(subSocket.ReceiveFrameString());
-            if (data != null)
+            client.ReceiveFrameString();
+
+            while (true)
             {
-                if (data.File != null)
+                //1、接收主题
+                string myTopic = subSocket.ReceiveFrameString();
+                //2、接收消息
+                data = MessageHelper.GetMessage(subSocket.ReceiveFrameString());
+
+
+                if (data != null)
                 {
-                    using (var fs = new FileStream(data.File.Name, FileMode.OpenOrCreate))
+                    if (data.File != null)
                     {
-                        fs.Read(data.File.Data, 0, data.File.Data.Length);
-                        txtResult.AppendText($"{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")} {data.UserName} 发送【{data.File.Name}】文件，已保存在{Path.GetFullPath(data.File.Name)} \r\n");
+                        string filePath = Path.GetFullPath("file");
+                        if (!Directory.Exists(filePath))
+                            Directory.CreateDirectory(filePath);
+
+                        using (var fs = new FileStream(filePath+"/"+data.File.FileName, FileMode.OpenOrCreate))
+                        {
+                            fs.Read(data.File.FileData, 0, data.File.FileData.Length);
+                            SetText($"{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")} {data.UserName} 发送【{data.File.FileName}】文件，已保存在{filePath}");
+                        }
                     }
+                    if(!string.IsNullOrEmpty(data.Message))
+                    {
+                        SetText($"{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")} {data.UserName}：{data.Message}");
+                    }
+                   
                 }
 
-                txtResult.AppendText($"{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")} {data.UserName} {data.Message} \r\n");
             }
             #endregion
+
         }
 
         private void btnFile_Click(object sender, EventArgs e)
@@ -133,9 +163,25 @@ namespace netmqClient
             if (fileDialog.ShowDialog() == DialogResult.OK)
             {
                 messageType = MessageType.File;
-                uploadFile.Name = fileDialog.FileName;
-                uploadFile.Data = Encoding.UTF8.GetBytes(Path.GetFullPath(fileDialog.FileName));
+                uploadFile.FileName =Path.GetFileName(fileDialog.FileName);
+                uploadFile.FileData = File.ReadAllBytes(fileDialog.FileName);
             }
         }
+
+
+        private void SetText(string text)
+        {
+            if (txtResult.InvokeRequired)
+            {
+                SetTextCallback d = new SetTextCallback(SetText);
+                Invoke(d, new object[] { text });
+            }
+            else
+            {
+                txtResult.AppendText(text + "\r\n");
+            }
+        }
+
+
     }
 }

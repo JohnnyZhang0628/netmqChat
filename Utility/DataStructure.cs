@@ -10,7 +10,7 @@ namespace Utility
 
         public string Message { get; set; }
 
-        public File File { get; set; }
+        public UploadFile File { get; set; }
 
         public MessageType MessageType { get; set; }
 
@@ -18,11 +18,11 @@ namespace Utility
 
     }
 
-    public class File
+    public class UploadFile
     {
-        public string  Name { get; set; }
+        public string  FileName { get; set; }
 
-        public byte[] Data { get; set; }
+        public byte[] FileData { get; set; }
     }
          
     /// <summary>

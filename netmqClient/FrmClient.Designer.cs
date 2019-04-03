@@ -35,9 +35,9 @@
             this.btnFile = new System.Windows.Forms.Button();
             this.btnSend = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.btnConnect = new System.Windows.Forms.Button();
             this.txtUserName = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.btnConnect = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -72,7 +72,7 @@
             this.groupBox2.Size = new System.Drawing.Size(908, 96);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "操作";
+            this.groupBox2.Text = "发送消息";
             // 
             // txtMsg
             // 
@@ -104,15 +104,25 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.btnConnect);
             this.groupBox3.Controls.Add(this.txtUserName);
             this.groupBox3.Controls.Add(this.label3);
-            this.groupBox3.Controls.Add(this.btnConnect);
             this.groupBox3.Location = new System.Drawing.Point(13, 12);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(908, 77);
             this.groupBox3.TabIndex = 2;
             this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "登录信息";
+            this.groupBox3.Text = "个人信息";
+            // 
+            // btnConnect
+            // 
+            this.btnConnect.Location = new System.Drawing.Point(184, 33);
+            this.btnConnect.Name = "btnConnect";
+            this.btnConnect.Size = new System.Drawing.Size(75, 23);
+            this.btnConnect.TabIndex = 7;
+            this.btnConnect.Text = "连接";
+            this.btnConnect.UseVisualStyleBackColor = true;
+            this.btnConnect.Click += new System.EventHandler(this.btnConnect_Click);
             // 
             // txtUserName
             // 
@@ -129,16 +139,6 @@
             this.label3.Size = new System.Drawing.Size(32, 17);
             this.label3.TabIndex = 5;
             this.label3.Text = "昵称";
-            // 
-            // btnConnect
-            // 
-            this.btnConnect.Location = new System.Drawing.Point(171, 34);
-            this.btnConnect.Name = "btnConnect";
-            this.btnConnect.Size = new System.Drawing.Size(75, 23);
-            this.btnConnect.TabIndex = 0;
-            this.btnConnect.Text = "连接服务器";
-            this.btnConnect.UseVisualStyleBackColor = true;
-            this.btnConnect.Click += new System.EventHandler(this.btnConnect_Click);
             // 
             // FrmClient
             // 
@@ -170,10 +170,10 @@
         private System.Windows.Forms.Button btnFile;
         private System.Windows.Forms.Button btnSend;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.Button btnConnect;
         private System.Windows.Forms.TextBox txtMsg;
         private System.Windows.Forms.TextBox txtUserName;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button btnConnect;
     }
 }
 

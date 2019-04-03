@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{B31B3695-857D-4ED0-A19E-A9AF9EB4B33A}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>netmq</RootNamespace>
-    <AssemblyName>netmq</AssemblyName>
+    <RootNamespace>netmqServer</RootNamespace>
+    <AssemblyName>netmqServer</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -87,6 +87,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
