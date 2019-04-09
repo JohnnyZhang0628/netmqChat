@@ -29,3 +29,5 @@ D:\WorkSpace\netmqChat\netmqClient\obj\Debug\netmqClient.csproj.CoreCompileInput
 D:\WorkSpace\netmqChat\netmqClient\obj\Debug\netmqClient.csproj.CopyComplete
 D:\WorkSpace\netmqChat\netmqClient\obj\Debug\netmqClient.exe
 D:\WorkSpace\netmqChat\netmqClient\obj\Debug\netmqClient.pdb
+D:\WorkSpace\netmqChat\netmqClient\bin\Debug\NAudio.dll
+D:\WorkSpace\netmqChat\netmqClient\bin\Debug\NAudio.xml

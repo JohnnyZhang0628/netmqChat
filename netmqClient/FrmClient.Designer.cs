@@ -38,6 +38,8 @@
             this.btnConnect = new System.Windows.Forms.Button();
             this.txtUserName = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.btnStartSpeak = new System.Windows.Forms.Button();
+            this.btnStopSpeak = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -64,6 +66,8 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.btnStopSpeak);
+            this.groupBox2.Controls.Add(this.btnStartSpeak);
             this.groupBox2.Controls.Add(this.txtMsg);
             this.groupBox2.Controls.Add(this.btnFile);
             this.groupBox2.Controls.Add(this.btnSend);
@@ -84,7 +88,7 @@
             // 
             // btnFile
             // 
-            this.btnFile.Location = new System.Drawing.Point(561, 43);
+            this.btnFile.Location = new System.Drawing.Point(654, 22);
             this.btnFile.Name = "btnFile";
             this.btnFile.Size = new System.Drawing.Size(75, 23);
             this.btnFile.TabIndex = 1;
@@ -94,9 +98,9 @@
             // 
             // btnSend
             // 
-            this.btnSend.Location = new System.Drawing.Point(661, 43);
+            this.btnSend.Location = new System.Drawing.Point(561, 22);
             this.btnSend.Name = "btnSend";
-            this.btnSend.Size = new System.Drawing.Size(75, 23);
+            this.btnSend.Size = new System.Drawing.Size(75, 68);
             this.btnSend.TabIndex = 0;
             this.btnSend.Text = "发送";
             this.btnSend.UseVisualStyleBackColor = true;
@@ -140,6 +144,26 @@
             this.label3.TabIndex = 5;
             this.label3.Text = "昵称";
             // 
+            // btnStartSpeak
+            // 
+            this.btnStartSpeak.Location = new System.Drawing.Point(749, 22);
+            this.btnStartSpeak.Name = "btnStartSpeak";
+            this.btnStartSpeak.Size = new System.Drawing.Size(75, 23);
+            this.btnStartSpeak.TabIndex = 4;
+            this.btnStartSpeak.Text = "开始录音";
+            this.btnStartSpeak.UseVisualStyleBackColor = true;
+            this.btnStartSpeak.Click += new System.EventHandler(this.btnStartSpeak_Click);
+            // 
+            // btnStopSpeak
+            // 
+            this.btnStopSpeak.Location = new System.Drawing.Point(749, 67);
+            this.btnStopSpeak.Name = "btnStopSpeak";
+            this.btnStopSpeak.Size = new System.Drawing.Size(75, 23);
+            this.btnStopSpeak.TabIndex = 5;
+            this.btnStopSpeak.Text = "结束录音";
+            this.btnStopSpeak.UseVisualStyleBackColor = true;
+            this.btnStopSpeak.Click += new System.EventHandler(this.btnStopSpeak_Click);
+            // 
             // FrmClient
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -174,6 +198,8 @@
         private System.Windows.Forms.TextBox txtUserName;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btnConnect;
+        private System.Windows.Forms.Button btnStopSpeak;
+        private System.Windows.Forms.Button btnStartSpeak;
     }
 }
 

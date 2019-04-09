@@ -1,10 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using NetMQ;
@@ -12,6 +6,7 @@ using NetMQ.Sockets;
 using Utility;
 using System.IO;
 using System.Configuration;
+using NAudio.Wave;
 
 namespace netmqClient
 {
@@ -35,6 +30,8 @@ namespace netmqClient
         SubscriberSocket subSocket = new SubscriberSocket();
         RequestSocket client = new RequestSocket();
 
+        NAudioRecorder recorder = new NAudioRecorder();
+
 
         public FrmClient()
         {
@@ -44,7 +41,12 @@ namespace netmqClient
             subSocket.Connect($"tcp://{pubIP}:{pubPort}");
             //1、订阅主题
             subSocket.Subscribe(topic);
+
+
+
+
         }
+
 
         private void btnConnect_Click(object sender, EventArgs e)
         {
@@ -89,6 +91,8 @@ namespace netmqClient
                 }
             }
 
+            txtMsg.Text = "";
+
             DataStructure data = new DataStructure
             {
                 DateTime = DateTime.Now,
@@ -98,12 +102,12 @@ namespace netmqClient
                 Message = msg,
                 UserName = txtUserName.Text.Trim()
             };
+            
             Task task = new Task(() =>
             {
                 SendAndReceiveMsg(data);
             });
             task.Start();
-
 
 
         }
@@ -131,23 +135,24 @@ namespace netmqClient
 
                 if (data != null)
                 {
-                    if (data.File != null)
+                    playNotice();
+                    if (data.File != null&&data.File.FileName!=null&&data.File.FileData!=null)
                     {
                         string filePath = Path.GetFullPath("file");
                         if (!Directory.Exists(filePath))
                             Directory.CreateDirectory(filePath);
 
-                        using (var fs = new FileStream(filePath+"/"+data.File.FileName, FileMode.OpenOrCreate))
+                        using (var fs = new FileStream(filePath + "/" + data.File.FileName, FileMode.OpenOrCreate))
                         {
                             fs.Read(data.File.FileData, 0, data.File.FileData.Length);
                             SetText($"{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")} {data.UserName} 发送【{data.File.FileName}】文件，已保存在{filePath}");
                         }
                     }
-                    if(!string.IsNullOrEmpty(data.Message))
+                    if (!string.IsNullOrEmpty(data.Message))
                     {
                         SetText($"{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")} {data.UserName}：{data.Message}");
                     }
-                   
+
                 }
 
             }
@@ -163,7 +168,7 @@ namespace netmqClient
             if (fileDialog.ShowDialog() == DialogResult.OK)
             {
                 messageType = MessageType.File;
-                uploadFile.FileName =Path.GetFileName(fileDialog.FileName);
+                uploadFile.FileName = Path.GetFileName(fileDialog.FileName);
                 uploadFile.FileData = File.ReadAllBytes(fileDialog.FileName);
             }
         }
@@ -182,6 +187,32 @@ namespace netmqClient
             }
         }
 
+        //播放提示消息
+        void playNotice()
+        {
+            var waveOutDevice = new WaveOut();
+            var audioFileReader = new AudioFileReader("../../audio/notice.mp3");
+            waveOutDevice.Init(audioFileReader);
+            waveOutDevice.Play();
+        }
 
+        private void btnStartSpeak_Click(object sender, EventArgs e)
+        {
+            string path =Path.GetFullPath("temp");
+            if (!Directory.Exists(path))
+                Directory.CreateDirectory(path);
+
+            recorder.SetFileName($"{path}/{DateTime.Now.ToString("yyyyMMddHHmmss")}.wav");
+            recorder.StartRec();
+        }
+
+        private void btnStopSpeak_Click(object sender, EventArgs e)
+        {
+            recorder.StopRec();
+            uploadFile.FileName =Path.GetFileName(recorder.fileName);
+            uploadFile.FileData = File.ReadAllBytes(recorder.fileName);
+        }
+
+       
     }
 }
